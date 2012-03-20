@@ -95,7 +95,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
-    multi_json (1.1.0)
+    multi_json (1.0.4)
     nokogiri (1.5.0)
     pg (0.13.1)
     polyglot (0.3.3)
@@ -202,13 +202,14 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
+  multi_json (~> 1.0.4)
   pg
   rails (= 3.1.0)
   rspec-rails
   ruby-debug19
   ruby-tmdb
   sass-rails (~> 3.1.0)
-  simplecov
+  simplecov (~> 0.4.2)
   sqlite3
   therubyracer
   uglifier

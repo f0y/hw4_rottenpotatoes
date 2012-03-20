@@ -15,8 +15,9 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'simplecov', :require => false
+  gem 'simplecov', "~> 0.4.2", :require => false
   gem 'ZenTest'
+  gem 'multi_json', "~> 1.0.4"
   gem 'autotest-notification'
 end
 group :production do
