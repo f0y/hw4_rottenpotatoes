@@ -14,7 +14,13 @@ end
 
 When /^I (?:am on|go to) the (.*) page for "(.*)"/ do |action, movie_title|
   movie = Movie.find_by_title(movie_title)
-  visit "/movies/#{movie.id}/#{action}"
+  visit path_for_movie(movie, action)
+end
+
+When /^I should be on the (.*) page for "(.*)"/ do |action, movie_title|
+  movie = Movie.find_by_title(movie_title)
+  current_path = URI.parse(current_url).path
+  current_path.should == path_for_movie(movie, action)
 end
 
 Given /^PENDING:/ do
@@ -25,4 +31,7 @@ Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |movie_title, director
   movie = Movie.find_by_title(movie_title)
   visit "/movies/#{movie.id}"
   step "I should see \"#{director}\""
+end
+Then /^I should be on the home page$/ do
+  visit '/movies'
 end

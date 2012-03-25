@@ -10,6 +10,23 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
+
+  def path_for_movie(movie, action)
+    "/movies/#{movie.id}/#{path_for_action(action)}"
+  end
+
+  def path_for_action(action)
+    case action
+      when /^details$/
+        ''
+      when /^edit$/
+        'edit'
+
+      when /^Similar Movies$/
+        'similar'
+    end
+  end
+
   def path_to(page_name)
     case page_name
 

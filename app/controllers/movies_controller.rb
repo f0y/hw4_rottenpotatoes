@@ -62,4 +62,9 @@ class MoviesController < ApplicationController
     @movies = Movie.find_in_tmdb(params[:search_terms])
   end
 
+  def similar
+    movie = Movie.find params[:id]
+    @movies = movie.similar
+  end
+
 end

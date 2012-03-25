@@ -26,4 +26,8 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def similar
+    Movie.all :conditions => ["id != ? AND director = ?", self.id, self.director]
+  end
+
 end
