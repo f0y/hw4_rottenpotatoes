@@ -57,4 +57,62 @@ describe MoviesController do
     end
 
   end
+
+  describe 'deleting a movie' do
+    it 'should destroy movie' do
+      movie = mock(:id => '1', :title => 'test_title')
+      Movie.stub(:find).and_return(movie)
+      movie.should_receive(:destroy)
+      Movie.should_receive(:find)
+      post :destroy, {:id => '1'}
+    end
+  end
+
+  describe 'creating a movie' do
+    it 'should create a movie' do
+      movie = mock(:id => '1', :title => 'test_title')
+      Movie.should_receive(:create!).and_return movie
+
+      post :create
+    end
+  end
+
+  describe 'showing a movie' do
+    it 'should show a movie' do
+      Fixnum.send(:include, MoviesHelper)
+      5.oddness(5)
+      get :index, {:sort => 'title'}
+    end
+    it 'should show a movie 2' do
+      get :index, {:sort => 'release_date'}
+    end
+
+    it 'should show a movie 3' do
+      get :index, {:sort => 'release_date', :ratings => ['PG']}
+    end
+
+    it 'should show a movie 4' do
+      Movie.should_receive(:find)
+      get :show, {:id => '1'}
+    end
+
+    it 'should show a movie 5' do
+      get :index, {:sort => 'release_date', :ratings => 'PG'}, {:sort => 'release_date', :ratings => 'G'}
+    end
+
+
+    it 'should show a movie 6' do
+      get :index, {:sort => 'release_date', :ratings => {'PG' => 't'}}, {:sort => 'release_date', :ratings => {'PG' => 't'}}
+    end
+
+    it 'update' do
+      m = mock()
+      Movie.should_receive(:find).and_return(m)
+      m.should_receive(:update_attributes!)
+      m.should_receive(:title)
+      post :update, {:id => '1', :movie => 't'}
+    end
+
+  end
+
 end
